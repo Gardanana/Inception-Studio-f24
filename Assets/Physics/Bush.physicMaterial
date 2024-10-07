@@ -7,8 +7,8 @@ PhysicMaterial:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Bush
-  dynamicFriction: 200
-  staticFriction: 200
+  dynamicFriction: 500
+  staticFriction: 700
   bounciness: 1
   frictionCombine: 2
   bounceCombine: 0
