@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -20,8 +22,13 @@ namespace StarterAssets
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
+        [Tooltip("Walking Audio")]
+        public AudioSource walkingSound;
+		public AudioClip sandWalking;
+		public AudioClip stoneWalking;
+		public AudioClip waterWalking;
 
-		[Space(10)]
+        [Space(10)]
 		[Tooltip("The height the player can jump")]
 		public float JumpHeight = 1.2f;
 		[Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
@@ -50,6 +57,8 @@ namespace StarterAssets
 		public float TopClamp = 90.0f;
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
+
+
 
 		// cinemachine
 		private float _cinemachineTargetPitch;
@@ -108,6 +117,8 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+
+			StartCoroutine(FootstepRoutine());
 		}
 
 		private void Update()
@@ -122,11 +133,42 @@ namespace StarterAssets
 			CameraRotation();
 		}
 
+		private AudioClip GetSurfaceSound(Collider[] hitColliders)
+		{
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.tag == "Water")
+                {
+					return waterWalking;
+                }
+				else if (hitCollider.tag == "Stone")
+				{
+					return stoneWalking;
+				}
+            }
+
+			return sandWalking;
+        }
+
 		private void GroundedCheck()
 		{
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+            Collider[] hitColliders = Physics.OverlapSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Collide);
+
+			Grounded = hitColliders.Length > 0;
+
+			if (Grounded)
+			{
+				AudioClip surfaceSound = GetSurfaceSound(hitColliders);
+				if(walkingSound.clip != surfaceSound)
+				{
+					walkingSound.Stop();
+					walkingSound.clip = surfaceSound;
+				}
+            }
+
+            //Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 		}
 
 		private void CameraRotation()
@@ -263,6 +305,19 @@ namespace StarterAssets
 
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
+		}
+
+		IEnumerator FootstepRoutine()
+		{
+			while(true)
+			{
+                yield return new WaitForSeconds(0.5f);
+				if(_speed > 0f)
+				{
+					walkingSound.Play();
+
+                }
+            }
 		}
 	}
 }

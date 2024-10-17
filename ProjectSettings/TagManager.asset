@@ -8,6 +8,9 @@ TagManager:
   - Rock
   - Bush
   - Palm
+  - Sand
+  - Water
+  - Stone
   layers:
   - Default
   - TransparentFX
