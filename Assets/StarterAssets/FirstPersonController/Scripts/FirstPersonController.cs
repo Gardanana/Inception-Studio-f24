@@ -133,8 +133,9 @@ namespace StarterAssets
 			CameraRotation();
 		}
 
-		private AudioClip GetSurfaceSound(Collider[] hitColliders)
+		private AudioClip GetSurfaceSound(Collider[] hitColliders) 
 		{
+            // footstep material checking stuff
             foreach (var hitCollider in hitColliders)
             {
                 if (hitCollider.tag == "Water")

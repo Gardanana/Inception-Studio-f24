@@ -8,6 +8,7 @@ public class Bush : MonoBehaviour
     Rigidbody rb;
     [SerializeField] private Vector2 bounceForce;
     [SerializeField] private float maxKick;
+    public RuinBuilder other;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,11 @@ public class Bush : MonoBehaviour
                 Vector3 kickForce = (Vector3.up * bounceForce.y) + (collision.relativeVelocity * bounceForce.x);
 
                 rb.AddForce(kickForce.normalized * (Mathf.Clamp(kickForce.magnitude, -maxKick, maxKick)), ForceMode.Impulse);
+            }
+            else if (collision.gameObject.tag == "Rock")
+            {
+                other.BuildRuin();
+                Debug.Log("rock+bush");
             }
         }
     }
