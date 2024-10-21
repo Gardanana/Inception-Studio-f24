@@ -25,5 +25,6 @@ public class Palm : MonoBehaviour
                 Random.Range(-spawnRange, spawnRange)
                 );
           obj.transform.parent = transform;
+        Debug.Log("spawning palm");
     }
 }
