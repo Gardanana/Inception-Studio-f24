@@ -8,11 +8,15 @@ public class Bush : MonoBehaviour
     Rigidbody rb;
     [SerializeField] private Vector2 bounceForce;
     [SerializeField] private float maxKick;
-    public RuinBuilder other;
+    AudioSource pop;
+    public RuinBuilder ruinBuilder;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        ruinBuilder = FindFirstObjectByType<RuinBuilder>();
+
     }
 
     // Update is called once per frame
@@ -33,8 +37,19 @@ public class Bush : MonoBehaviour
             }
             else if (collision.gameObject.tag == "Rock")
             {
-                other.BuildRuin();
+                ruinBuilder.BuildRuin(RuinBuilder.ReactionType.RockBush);
+                pop = GetComponent<AudioSource>();
+                pop.Play();
+
                 Debug.Log("rock+bush");
+            }
+            else if (collision.gameObject.tag == "Bush")
+            {
+                ruinBuilder.BuildRuin(RuinBuilder.ReactionType.BushBush);
+                pop = GetComponent<AudioSource>();
+                pop.Play();
+
+                Debug.Log("bush+bush");
             }
         }
     }

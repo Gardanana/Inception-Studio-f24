@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.chaser324.unity-wireframe": "https://github.com/insominx/unity-wireframe.git?path=/Packages/unity-wireframe",
     "com.unity.cinemachine": "2.10.1",
     "com.unity.collab-proxy": "2.5.1",
     "com.unity.editorcoroutines": "1.0.0",
