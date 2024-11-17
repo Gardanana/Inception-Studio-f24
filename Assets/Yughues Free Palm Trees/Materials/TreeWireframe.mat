@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rock 1
-  m_Shader: {fileID: -6465566751694194690, guid: b77074c419ecfff41bef65c4fa3344ec, type: 3}
+  m_Name: TreeWireframe
+  m_Shader: {fileID: 4800000, guid: 005c45b8761218f43807a6c6f8091454, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -38,6 +38,10 @@ Material:
     m_TexEnvs:
     - _Diffuse:
         m_Texture: {fileID: 2800000, guid: b48b5c1ded672764387b11fc44e7b8c7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 2800000, guid: a6e9f4ff100a94264a812ad74e17416c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
@@ -60,6 +64,8 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: -1
     - _BUILTIN_QueueOffset: 0
+    - _Emission: 90
+    - _MaxTriSize: 25
     - _Noise_Max: 0.1
     - _Noise_Min: -0.1
     - _Noise_Strength: 0.2
@@ -68,7 +74,12 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Tiling: 0.1
-    m_Colors: []
+    - _WireSmoothness: 3
+    - _WireThickness: 100
+    m_Colors:
+    - _BaseColor: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _WireColor: {r: 1, g: 0.36226422, b: 0.6576018, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &58121603901486124
 MonoBehaviour:
