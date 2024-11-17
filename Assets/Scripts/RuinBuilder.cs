@@ -167,7 +167,7 @@ public class RuinBuilder : MonoBehaviour
         ruinObject.transform.parent = nextTile.transform;
 
 
-        ruinObject.transform.position = nextTile.transform.position + (nextTile.GetComponent<BoxCollider>().size / 2);
+        ruinObject.transform.position = nextTile.transform.position + (nextTile.transform.localScale / 2);
     }
 
     public void PackageBuilding()
