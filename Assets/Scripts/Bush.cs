@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class Bush : MonoBehaviour
 {
@@ -10,13 +11,19 @@ public class Bush : MonoBehaviour
     [SerializeField] private float maxKick;
     AudioSource pop;
     public RuinBuilder ruinBuilder;
+    public RuinManager ruinManager;
+    [SerializeField] AudioClip bushSound;
+
+    Wireframe wireFrame;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         ruinBuilder = FindFirstObjectByType<RuinBuilder>();
-
+        ruinManager = FindFirstObjectByType<RuinManager>();
+        wireFrame = GetComponent<Wireframe>();
+        pop = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,27 +36,18 @@ public class Bush : MonoBehaviour
     {
         if(collision != null)
         {
-            if(collision.gameObject.tag == "Player")
+            if (collision.gameObject.tag == "Player" && !wireFrame.isWireFrame)
             {
                 Vector3 kickForce = (Vector3.up * bounceForce.y) + (collision.relativeVelocity * bounceForce.x);
 
                 rb.AddForce(kickForce.normalized * (Mathf.Clamp(kickForce.magnitude, -maxKick, maxKick)), ForceMode.Impulse);
-            }
-            else if (collision.gameObject.tag == "Rock")
-            {
-                ruinBuilder.BuildRuin(RuinBuilder.ReactionType.RockBush);
-                pop = GetComponent<AudioSource>();
-                pop.Play();
 
-                Debug.Log("rock+bush");
-            }
-            else if (collision.gameObject.tag == "Bush")
-            {
-                ruinBuilder.BuildRuin(RuinBuilder.ReactionType.BushBush);
-                pop = GetComponent<AudioSource>();
+                pop.clip = bushSound;
                 pop.Play();
-
-                Debug.Log("bush+bush");
+            }
+            else
+            {
+                ruinManager.BuildRuin(gameObject, collision.gameObject);
             }
         }
     }
