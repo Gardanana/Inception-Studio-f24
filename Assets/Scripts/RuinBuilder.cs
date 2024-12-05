@@ -125,15 +125,6 @@ public class RuinBuilder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            BuildRuin(RuinBuilder.ReactionType.RockBush);
-        }
-
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-            PackageBuilding();
-        }
     }
     public void BuildRuin(ReactionType type)
     {

@@ -19,7 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _NormalStregnth
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -91,6 +91,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _GrainPeriod: 1500
+    - _GrainShineStrength: 1
     - _Metallic: 0
     - _Mode: 0
     - _NormalStregnth: 3
@@ -113,9 +114,10 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SandHighColor: {r: 0.6792453, g: 0.60193056, b: 0.39216805, a: 0}
-    - _SandLowColor: {r: 0.5886792, g: 0.39828473, b: 0.13106443, a: 0}
-    - _SubstrateColor: {r: 0.2188679, g: 0.14429943, b: 0.08837308, a: 0}
+    - _SandHighColor: {r: 0.49500892, g: 0.56171167, b: 0.6867925, a: 0}
+    - _SandLowColor: {r: 0.20761836, g: 0.29066572, b: 0.40754712, a: 0}
+    - _ShineColor: {r: 0.6566038, g: 0.85142094, b: 1, a: 0}
+    - _SubstrateColor: {r: 0.19104305, g: 0.2062026, b: 0.4867924, a: 0}
     - _UVTiling: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4961869277368375435

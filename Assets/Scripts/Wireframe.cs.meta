@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 75d0c3aa372abb549abe7ed4e1f903aa
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - wireFrameBody: {instanceID: 0}
+  - normalBody: {instanceID: 0}
+  - wireAudio: {instanceID: 0}
+  - chime: {fileID: 8300000, guid: 56681b77ba36154409428800f6aea0b9, type: 3}
+  - crunch: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
